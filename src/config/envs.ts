@@ -17,3 +17,7 @@ if (error) {
 }
 
 const envVars: EnvVars = value;
+
+export const envs = {
+    port: envVars.PORT,
+}
