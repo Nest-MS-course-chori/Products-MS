@@ -29,13 +29,14 @@ export class ProductsController {
 
   // @Patch(':id')
   @MessagePattern({ cmd: 'update_product' })
-  update(@Payload() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(updateProductDto);
+  async update(@Payload() updateProductDto: any) {
+    console.log("update cmd", updateProductDto);
+    return await this.productsService.update(updateProductDto);
   }
 
   // @Delete(':id')
   @MessagePattern({ cmd: 'delete_product' })
-  remove(@Payload('id') id: string) {
-    return this.productsService.remove(+id);
+  remove(@Payload('id', ParseIntPipe) id: number) {
+    return this.productsService.remove(id);
   }
 }
